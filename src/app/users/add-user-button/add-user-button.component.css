@@ -1,0 +1,11 @@
+.input-row {
+  display: inline-block;
+}
+
+.input-row-first {
+  margin: 0rem 1rem 0.5rem 0rem;
+}
+
+.content {
+  padding-top: 1rem;
+}

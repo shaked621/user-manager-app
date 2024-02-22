@@ -1,0 +1,22 @@
+.contianer {
+  margin: auto;
+  width: 38%;
+  padding: 5rem;
+}
+
+.table {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.button {
+  width: 3.5rem;
+  position: absolute;
+  right: 52rem;
+}
+
+.no-data-cell {
+  padding: 2rem 23rem;
+  font-weight: 600;
+  font-size: large;
+}
