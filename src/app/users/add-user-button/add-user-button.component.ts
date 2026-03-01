@@ -1,7 +1,18 @@
-import { AfterViewChecked, Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { GenderEnum, IUser } from 'src/app/models/user.model';
 import { UsersService } from '../users.service';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { UserErrorStateMatcher } from './error-matcher';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -15,11 +26,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-    selector: 'app-add-user-button',
-    templateUrl: './add-user-button.component.html',
-    styleUrls: ['./add-user-button.component.css'],
-    standalone: true,
-    imports: [
+  selector: 'app-add-user-button',
+  templateUrl: './add-user-button.component.html',
+  styleUrls: ['./add-user-button.component.css'],
+  standalone: true,
+  imports: [
     MatDialogModule,
     FormsModule,
     MatFormFieldModule,
@@ -28,8 +39,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatOptionModule,
     MatAutocompleteModule,
     MatButtonModule,
-    AsyncPipe
-],
+    AsyncPipe,
+  ],
 })
 export class AddUserButtonComponent
   implements OnInit, OnDestroy, AfterViewChecked
@@ -78,7 +89,7 @@ export class AddUserButtonComponent
       map(() => {
         const temp = this.userDetailsForm?.form?.controls['country'].value;
         return this._filter(temp);
-      })
+      }),
     );
   }
 
@@ -117,7 +128,7 @@ export class AddUserButtonComponent
   _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     const res = this.countries.filter((country) =>
-      country.toLowerCase().includes(filterValue)
+      country.toLowerCase().includes(filterValue),
     );
     return res;
   }

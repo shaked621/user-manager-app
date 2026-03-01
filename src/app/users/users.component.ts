@@ -1,4 +1,11 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { IUser } from '../models/user.model';
 import { UsersService } from './users.service';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -10,16 +17,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 
 @Component({
-    selector: 'app-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.css'],
-    standalone: true,
-    imports: [
-        MatTableModule,
-        MatSortModule,
-        MatButtonModule,
-        MatIconModule,
-    ],
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css'],
+  standalone: true,
+  imports: [MatTableModule, MatSortModule, MatButtonModule, MatIconModule],
 })
 export class UsersComponent implements OnInit, OnDestroy, OnChanges {
   private readonly usersService = inject(UsersService);
