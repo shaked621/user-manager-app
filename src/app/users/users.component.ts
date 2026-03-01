@@ -8,14 +8,24 @@ import {
 import { IUser } from '../models/user.model';
 import { UsersService } from './users.service';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserButtonComponent } from './add-user-button/add-user-button.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.css'],
+    standalone: true,
+    imports: [
+        MatTableModule,
+        MatSortModule,
+        MatButtonModule,
+        MatIconModule,
+    ],
 })
 export class UsersComponent implements OnInit, OnDestroy, OnChanges {
   private users: IUser[] = [];

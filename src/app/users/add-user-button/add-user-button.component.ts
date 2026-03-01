@@ -8,16 +8,37 @@ import {
 } from '@angular/core';
 import { GenderEnum, IUser } from 'src/app/models/user.model';
 import { UsersService } from '../users.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { UserErrorStateMatcher } from './error-matcher';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable, map, startWith } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-add-user-button',
-  templateUrl: './add-user-button.component.html',
-  styleUrls: ['./add-user-button.component.css'],
+    selector: 'app-add-user-button',
+    templateUrl: './add-user-button.component.html',
+    styleUrls: ['./add-user-button.component.css'],
+    standalone: true,
+    imports: [
+        MatDialogModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        NgIf,
+        MatSelectModule,
+        NgFor,
+        MatOptionModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        AsyncPipe,
+    ],
 })
 export class AddUserButtonComponent
   implements OnInit, OnDestroy, AfterViewChecked

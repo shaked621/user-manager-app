@@ -11,16 +11,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, AddUserButtonComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NoopAnimationsModule,
-    FormsModule,
-    MaterialModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NoopAnimationsModule,
+        FormsModule,
+        MaterialModule,
+        HttpClientModule,
+        UsersComponent, AddUserButtonComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
