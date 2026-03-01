@@ -1,11 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { GenderEnum, IUser } from 'src/app/models/user.model';
 import { UsersService } from '../users.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
@@ -41,6 +34,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class AddUserButtonComponent
   implements OnInit, OnDestroy, AfterViewChecked
 {
+  private readonly userService = inject(UsersService);
+  dialogRef = inject<MatDialogRef<AddUserButtonComponent>>(MatDialogRef);
+  data = inject<IUser>(MAT_DIALOG_DATA);
+
   @ViewChild('userDetailsForm') userDetailsForm: NgForm | undefined;
 
   newUser: IUser = {
@@ -60,11 +57,12 @@ export class AddUserButtonComponent
   filteredCountries: Observable<string[]> | undefined;
   countriesChanged$: Subscription | undefined;
 
-  constructor(
-    private readonly userService: UsersService,
-    public dialogRef: MatDialogRef<AddUserButtonComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IUser
-  ) {
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {
+    const data = this.data;
+
     this.genderList = Object.keys(GenderEnum).filter((f) => f !== undefined);
     if (data) {
       this.newUser = { ...data };

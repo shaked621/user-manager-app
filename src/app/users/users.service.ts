@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { GenderEnum, IUser } from '../models/user.model';
 import { Subject, Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,9 +8,14 @@ import { CountryApiService } from '../services/country-api.service';
   providedIn: 'root',
 })
 export class UsersService {
+  private countryApiService = inject(CountryApiService);
+
   private users: IUser[] = [];
   userChanged$: Subject<IUser[]> = new Subject<IUser[]>();
-  constructor(private countryApiService: CountryApiService) {}
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {}
 
   createUser(user: IUser) {
     user.id = uuidv4();

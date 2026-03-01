@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import { IUser } from '../models/user.model';
 import { UsersService } from './users.service';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -28,6 +22,9 @@ import { MatSortModule } from '@angular/material/sort';
     ],
 })
 export class UsersComponent implements OnInit, OnDestroy, OnChanges {
+  private readonly usersService = inject(UsersService);
+  dialog = inject(MatDialog);
+
   private users: IUser[] = [];
   users$: Subscription | undefined;
   dataSource: MatTableDataSource<IUser> = new MatTableDataSource<IUser>();
@@ -41,10 +38,10 @@ export class UsersComponent implements OnInit, OnDestroy, OnChanges {
     'edit',
   ];
 
-  constructor(
-    private readonly usersService: UsersService,
-    public dialog: MatDialog
-  ) {}
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {}
 
   ngOnInit(): void {
     this.users$ = this.usersService.userChanged$.subscribe((users: IUser[]) => {

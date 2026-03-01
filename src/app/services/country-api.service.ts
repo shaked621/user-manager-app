@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -7,9 +7,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CountryApiService {
+  private httpClient = inject(HttpClient);
+
   private url = environment.baseApiUrl;
 
-  constructor(private httpClient: HttpClient) {}
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {}
 
   getCountries(): Observable<string[]> {
     return this.httpClient.get<any[]>(this.url).pipe(
