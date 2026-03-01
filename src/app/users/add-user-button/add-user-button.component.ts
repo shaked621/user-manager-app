@@ -3,8 +3,8 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild,
   inject,
+  viewChild
 } from '@angular/core';
 import { GenderEnum, IUser } from 'src/app/models/user.model';
 import { UsersService } from '../users.service';
@@ -49,7 +49,7 @@ export class AddUserButtonComponent
   dialogRef = inject<MatDialogRef<AddUserButtonComponent>>(MatDialogRef);
   data = inject<IUser>(MAT_DIALOG_DATA);
 
-  @ViewChild('userDetailsForm') userDetailsForm: NgForm | undefined;
+  readonly userDetailsForm = viewChild<NgForm>('userDetailsForm');
 
   newUser: IUser = {
     id: '',
@@ -82,12 +82,12 @@ export class AddUserButtonComponent
     }
   }
   ngAfterViewChecked(): void {
-    this.filteredCountries = this.userDetailsForm?.form?.controls[
+    this.filteredCountries = this.userDetailsForm()?.form?.controls[
       'country'
     ]?.valueChanges.pipe(
       startWith(''),
       map(() => {
-        const temp = this.userDetailsForm?.form?.controls['country'].value;
+        const temp = this.userDetailsForm()?.form?.controls['country'].value;
         return this._filter(temp);
       }),
     );
@@ -109,7 +109,7 @@ export class AddUserButtonComponent
   }
 
   onSave(): void {
-    if (this.userDetailsForm?.form?.valid) {
+    if (this.userDetailsForm()?.form?.valid) {
       if (!this.updateUser) {
         this.userService.createUser(this.newUser);
       } else {
@@ -120,7 +120,7 @@ export class AddUserButtonComponent
   }
 
   onUpdate(): void {
-    if (this.userDetailsForm?.form?.valid) {
+    if (this.userDetailsForm()?.form?.valid) {
       this.userService.updateUser(this.newUser);
     }
   }
