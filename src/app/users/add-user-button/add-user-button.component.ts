@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -27,18 +27,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     styleUrls: ['./add-user-button.component.css'],
     standalone: true,
     imports: [
-        MatDialogModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        NgIf,
-        MatSelectModule,
-        NgFor,
-        MatOptionModule,
-        MatAutocompleteModule,
-        MatButtonModule,
-        AsyncPipe,
-    ],
+    MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    AsyncPipe
+],
 })
 export class AddUserButtonComponent
   implements OnInit, OnDestroy, AfterViewChecked

@@ -13,141 +13,163 @@
             name="firstName"
             required
             minlength="2"
-          />
-          <mat-error *ngIf="!userDetailsForm.hasError('minlength')"
-            >First Name need to be 2 letters</mat-error
-          >
-          <mat-error *ngIf="userDetailsForm.hasError('required')"
-            >First Name is a required field</mat-error
-          >
-        </mat-form-field>
-      </div>
-      <div class="input-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Last Name</mat-label>
-          <input
-            type="text"
-            matInput
-            [errorStateMatcher]="errorStateMatcher"
-            [(ngModel)]="newUser.lastName"
-            name="lastName"
-            required
-            minlength="2"
-          />
-          <mat-error *ngIf="!userDetailsForm.hasError('minlength')"
-            >Last Name need to be 2 letters</mat-error
-          >
-          <mat-error *ngIf="userDetailsForm.hasError('required')"
-            >Last Name is a required field</mat-error
-          >
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-row input-row-first">
-        <mat-form-field appearance="outline">
-          <mat-label>Age</mat-label>
-          <input
-            type="number"
-            matInput
-            [(ngModel)]="newUser.age"
-            [errorStateMatcher]="errorStateMatcher"
-            name="age"
-            required
-            min="0"
-            max="200"
-          />
-          <mat-error
-            *ngIf="
-              !userDetailsForm.hasError('max') ||
-              !userDetailsForm.hasError('min')
-            "
-            >Please enter a valid age</mat-error
-          >
-          <mat-error *ngIf="userDetailsForm.hasError('required')"
-            >Age is a required field</mat-error
-          >
-        </mat-form-field>
-      </div>
-      <div class="input-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Gender</mat-label>
-          <mat-select
-            [(value)]="selectedGender"
-            [(ngModel)]="newUser.gender"
-            name="gender"
-            required
-          >
-            <mat-option *ngFor="let gender of genderList" [value]="gender">
-              {{ gender }}
-            </mat-option>
-          </mat-select>
-          <mat-error>Gender is a required field</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-row input-row-first">
-        <mat-form-field appearance="outline">
-          <mat-label>Country</mat-label>
-          <input
-            [errorStateMatcher]="errorStateMatcher"
-            [(ngModel)]="newUser.country"
-            type="text"
-            matInput
-            name="country"
-            required
-            minlength="2"
-            [matAutocomplete]="autoGroup"
-          />
-          <mat-autocomplete autoActiveFirstOption #autoGroup="matAutocomplete">
-            <mat-option
-              *ngFor="let group of filteredCountries | async"
-              [value]="group"
-            >
-              {{ group }}
-            </mat-option>
-          </mat-autocomplete>
-          <mat-error *ngIf="!userDetailsForm.hasError('minlength')"
-            >Country need to be 2 letters</mat-error
-          >
-          <mat-error *ngIf="userDetailsForm.hasError('required')"
-            >Country is a required field</mat-error
-          >
-        </mat-form-field>
-      </div>
-      <div class="input-row">
-        <mat-form-field appearance="outline">
-          <mat-label>City</mat-label>
-          <input
-            type="text"
-            matInput
-            [errorStateMatcher]="errorStateMatcher"
-            [(ngModel)]="newUser.city"
-            name="city"
-            required
-            minlength="2"
-          />
-          <mat-error *ngIf="!userDetailsForm.hasError('minlength')"
-            >City need to be 2 letters</mat-error
-          >
-          <mat-error *ngIf="userDetailsForm.hasError('required')"
-            >City is a required field</mat-error
-          >
-        </mat-form-field>
-      </div>
-    </div>
-  </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Close</button>
-  <button
-    mat-button
-    mat-raised-button
-    cdkFocusInitial
-    [disabled]="!userDetailsForm.valid"
-    (click)="onSave()"
-  >
-    Save
-  </button>
-</div>
+            />
+            @if (!userDetailsForm.hasError('minlength')) {
+              <mat-error
+                >First Name need to be 2 letters</mat-error
+                >
+            }
+            @if (userDetailsForm.hasError('required')) {
+              <mat-error
+                >First Name is a required field</mat-error
+                >
+              }
+            </mat-form-field>
+          </div>
+          <div class="input-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input
+                type="text"
+                matInput
+                [errorStateMatcher]="errorStateMatcher"
+                [(ngModel)]="newUser.lastName"
+                name="lastName"
+                required
+                minlength="2"
+                />
+                @if (!userDetailsForm.hasError('minlength')) {
+                  <mat-error
+                    >Last Name need to be 2 letters</mat-error
+                    >
+                }
+                @if (userDetailsForm.hasError('required')) {
+                  <mat-error
+                    >Last Name is a required field</mat-error
+                    >
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-row input-row-first">
+                <mat-form-field appearance="outline">
+                  <mat-label>Age</mat-label>
+                  <input
+                    type="number"
+                    matInput
+                    [(ngModel)]="newUser.age"
+                    [errorStateMatcher]="errorStateMatcher"
+                    name="age"
+                    required
+                    min="0"
+                    max="200"
+                    />
+                    @if (
+                      !userDetailsForm.hasError('max') ||
+                      !userDetailsForm.hasError('min')
+                      ) {
+                      <mat-error
+                        >Please enter a valid age</mat-error
+                        >
+                    }
+                    @if (userDetailsForm.hasError('required')) {
+                      <mat-error
+                        >Age is a required field</mat-error
+                        >
+                      }
+                    </mat-form-field>
+                  </div>
+                  <div class="input-row">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Gender</mat-label>
+                      <mat-select
+                        [(value)]="selectedGender"
+                        [(ngModel)]="newUser.gender"
+                        name="gender"
+                        required
+                        >
+                        @for (gender of genderList; track gender) {
+                          <mat-option [value]="gender">
+                            {{ gender }}
+                          </mat-option>
+                        }
+                      </mat-select>
+                      <mat-error>Gender is a required field</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-row input-row-first">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Country</mat-label>
+                      <input
+                        [errorStateMatcher]="errorStateMatcher"
+                        [(ngModel)]="newUser.country"
+                        type="text"
+                        matInput
+                        name="country"
+                        required
+                        minlength="2"
+                        [matAutocomplete]="autoGroup"
+                        />
+                        <mat-autocomplete autoActiveFirstOption #autoGroup="matAutocomplete">
+                          @for (group of filteredCountries | async; track group) {
+                            <mat-option
+                              [value]="group"
+                              >
+                              {{ group }}
+                            </mat-option>
+                          }
+                        </mat-autocomplete>
+                        @if (!userDetailsForm.hasError('minlength')) {
+                          <mat-error
+                            >Country need to be 2 letters</mat-error
+                            >
+                        }
+                        @if (userDetailsForm.hasError('required')) {
+                          <mat-error
+                            >Country is a required field</mat-error
+                            >
+                          }
+                        </mat-form-field>
+                      </div>
+                      <div class="input-row">
+                        <mat-form-field appearance="outline">
+                          <mat-label>City</mat-label>
+                          <input
+                            type="text"
+                            matInput
+                            [errorStateMatcher]="errorStateMatcher"
+                            [(ngModel)]="newUser.city"
+                            name="city"
+                            required
+                            minlength="2"
+                            />
+                            @if (!userDetailsForm.hasError('minlength')) {
+                              <mat-error
+                                >City need to be 2 letters</mat-error
+                                >
+                            }
+                            @if (userDetailsForm.hasError('required')) {
+                              <mat-error
+                                >City is a required field</mat-error
+                                >
+                              }
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div mat-dialog-actions>
+                      <button mat-button (click)="onCancel()">Close</button>
+                      <button
+                        mat-button
+                        mat-raised-button
+                        cdkFocusInitial
+                        [disabled]="!userDetailsForm.valid"
+                        (click)="onSave()"
+                        >
+                        Save
+                      </button>
+                    </div>
